@@ -1,0 +1,25 @@
+spring:
+  application:
+     name: api-gateway-service
+
+server:
+  port: 8585
+
+zuul:
+  prefix: /api
+  routes:
+     db-service:
+       path: /db-service/**
+       url: http://localhost:8300
+     stock-service:
+            path: /stock-service/**
+            url: http://localhost:8383
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
